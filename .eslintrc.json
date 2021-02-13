@@ -8,6 +8,13 @@
     "plugins": [
         "@typescript-eslint"
     ],
+    "extends":[
+        "eslint:recommended"
+    ],
+    "env": {
+    "browser": true,
+    "node": true
+    },
     "rules": {
         "@typescript-eslint/naming-convention": "warn",
         "@typescript-eslint/semi": "warn",

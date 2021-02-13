@@ -7,5 +7,35 @@
         "out": true // set this to false to include "out" folder in search results
     },
     // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
-    "typescript.tsc.autoDetect": "off"
+    "typescript.tsc.autoDetect": "off",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "html",
+        "markdown",
+        "vue"
+    ],
+    // vscode默认启用了根据文件类型自动设置tabsize的选项
+    "editor.detectIndentation": false,
+    // 重新设定tabsize
+    "editor.tabSize": 2,
+    // #每次保存的时候自动格式化
+    "editor.formatOnSave": false,
+    // #让函数(名)和后面的括号之间加个空格
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    // #让prettier使用eslint的代码格式进行校验
+    // "prettier.eslintIntegration": true,
+    // #去掉代码结尾的分号
+    // "prettier.semi": false,
+    // #使用带引号替代双引号
+    // "prettier.singleQuote": true,
+    // #每次保存的时候将代码按eslint格式进行修复
+    "vetur.format.defaultFormatter.html": "prettier",
+    "vetur.validation.template": false,
+    "prettier.disableLanguages": [],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
 }
