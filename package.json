@@ -10,16 +10,60 @@
 		"Other"
 	],
 	"activationEvents": [
+		"onView:LANEquipmentProvider",
 		"onCommand:first-vs-extension.helloWorld"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "wakeonlan",
+					"title": "Wake On Lan",
+					"icon": "media/lan.svg"
+				}
+			]
+		},
 		"commands": [
 			{
 				"command": "first-vs-extension.helloWorld",
 				"title": "Hello World"
+			},
+      {
+				"command": "LANEquipmentProvider.refreshEntry",
+				"title": "刷新"
+			},
+      {
+				"command": "LANEquipmentProvider.wakeEntry",
+				"title": "唤醒"
 			}
-		]
+		],
+		"views": {
+			"wakeonlan": [
+				{
+					"id": "LANEquipmentProvider",
+					"name": "wakeonlan",
+					"icon": "media/lan.svg",
+					"contextualTitle": "Wake On Lan"
+				}
+			]
+		},
+    "menus": {
+      "view/title": [
+				{
+					"command": "LANEquipmentProvider.refreshEntry",
+					"when": "view == LANEquipmentProvider",
+					"group": "navigation"
+				}
+			],
+      "view/item/context": [
+        {
+          "command": "LANEquipmentProvider.wakeEntry",
+          "when": "view == LANEquipmentProvider && viewItem == equipment",
+          "group": "inline"
+        }
+      ]
+    }
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
@@ -31,6 +75,7 @@
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
+		"@types/lodash-es": "^4.17.4",
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
 		"@types/vscode": "^1.53.0",
@@ -43,5 +88,10 @@
 		"prettier": "^2.2.1",
 		"typescript": "^4.1.2",
 		"vscode-test": "^1.4.1"
+	},
+	"dependencies": {
+		"@vue/reactivity": "^3.0.5",
+		"local-devices": "^3.1.0",
+		"lodash": "^4.17.20"
 	}
 }
