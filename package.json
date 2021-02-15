@@ -1,6 +1,6 @@
 {
   "publisher": "leiyunkang",
-	"name": "first-vs-extension",
+	"name": "wake-on-lan",
 	"displayName": "first-vs-extension",
 	"description": "",
 	"version": "0.0.1",
@@ -15,6 +15,17 @@
 		"onCommand:first-vs-extension.helloWorld"
 	],
 	"main": "./out/extension.js",
+  "keywords": [
+    "远程唤醒",
+    "wake on lan"
+  ],
+  "icon": "media/lan.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leiyunkang7/first-vs-extension"
+  },
+  "homepage": "https://github.com/leiyunkang7/first-vs-extension",
+  "bugs": "https://github.com/leiyunkang7/first-vs-extension/issues",
 	"contributes": {
 		"viewsContainers": {
 			"activitybar": [
