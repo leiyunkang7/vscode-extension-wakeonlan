@@ -10,14 +10,7 @@ export class LANEquipmentProvider
   static wakeEntry = 'LANEquipmentProvider.wakeEntry'
 
   constructor(private context: vscode.ExtensionContext) {
-    vscode.commands.registerCommand(LANEquipmentProvider.refreshEntry, () =>
-      this.refresh()
-    )
-
-    vscode.commands.registerCommand(
-      LANEquipmentProvider.wakeEntry,
-      (equipment: Equipment) => this.wake(equipment)
-    )
+   
   }
 
   private _onDidChangeTreeData: vscode.EventEmitter<
@@ -52,7 +45,7 @@ export class LANEquipmentProvider
   }
 }
 
-class Equipment extends vscode.TreeItem {
+export class Equipment extends vscode.TreeItem {
   constructor(
     public readonly label: string,
     public readonly description: string,

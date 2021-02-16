@@ -52,7 +52,7 @@
 			},
 			{
 				"command": "LANFavoritesProvider.add",
-				"title": "刷新",
+				"title": "添加",
         "icon": "$(plus)"
 			}
 		],
@@ -78,6 +78,11 @@
 				{
 					"command": "LANEquipmentProvider.refreshEntry",
 					"when": "view == LANEquipmentProvider",
+					"group": "navigation"
+				},
+        {
+					"command": "LANFavoritesProvider.add",
+					"when": "view == LANFavoritesProvider",
 					"group": "navigation"
 				}
 			],

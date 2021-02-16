@@ -6,10 +6,7 @@ import { ref, Ref } from '@vue/reactivity'
 
 export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
   constructor() {
-    vscode.commands.registerCommand(
-      LANFavoritesProvider.add,
-      (item: Favorite) => this.add(item)
-    )
+    
     this.favoriteList = useLocalStorage<Favorite[]>('favoriteList', [])
   }
   onDidChangeTreeData?:
@@ -32,7 +29,9 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
 
   static add = 'LANFavoritesProvider.add'
 
-  add(item: Favorite) {}
+  add(item: Favorite) {
+    this.favoriteList.value.push(item)
+  }
 
   wake(equipment: Favorite) {
     wol(equipment.description).then(() => {
@@ -41,7 +40,7 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
   }
 }
 
-class Favorite extends vscode.TreeItem {
+export class Favorite extends vscode.TreeItem {
   constructor(
     public readonly label: string,
     public readonly description: string,
