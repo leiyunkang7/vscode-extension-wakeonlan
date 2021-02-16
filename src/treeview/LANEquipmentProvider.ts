@@ -1,13 +1,14 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as find from 'local-devices';
+import * as wol from 'wakeonlan'; 
 
 export class LANEquipmentProvider implements vscode.TreeDataProvider<Equipment> {
   static refreshEntry = 'LANEquipmentProvider.refreshEntry';
 
   static wakeEntry = 'LANEquipmentProvider.wakeEntry';
 
-  constructor(private workspaceRoot: string) {
+  constructor(private context: vscode.ExtensionContext) {
     vscode.commands.registerCommand(LANEquipmentProvider.refreshEntry, () =>
       this.refresh()
     );
@@ -44,7 +45,9 @@ export class LANEquipmentProvider implements vscode.TreeDataProvider<Equipment> 
   }
 
   wake(equipment: Equipment) {
-    vscode.window.showInformationMessage(equipment.label);
+    wol(equipment.description).then(() => {
+      vscode.window.showInformationMessage(`${equipment.label} 唤醒成功`);
+    });
   }
 }
 

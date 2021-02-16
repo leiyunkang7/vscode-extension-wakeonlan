@@ -1,5 +1,5 @@
 {
-  "publisher": "leiyunkang",
+	"publisher": "leiyunkang",
 	"name": "wake-on-lan",
 	"displayName": "first-vs-extension",
 	"description": "",
@@ -15,17 +15,17 @@
 		"onCommand:first-vs-extension.helloWorld"
 	],
 	"main": "./out/extension.js",
-  "keywords": [
-    "远程唤醒",
-    "wake on lan"
-  ],
-  "icon": "media/lan.png",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/leiyunkang7/first-vs-extension"
-  },
-  "homepage": "https://github.com/leiyunkang7/first-vs-extension",
-  "bugs": "https://github.com/leiyunkang7/first-vs-extension/issues",
+	"keywords": [
+		"远程唤醒",
+		"wake on lan"
+	],
+	"icon": "media/lan.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/leiyunkang7/first-vs-extension"
+	},
+	"homepage": "https://github.com/leiyunkang7/first-vs-extension",
+	"bugs": "https://github.com/leiyunkang7/first-vs-extension/issues",
 	"contributes": {
 		"viewsContainers": {
 			"activitybar": [
@@ -41,11 +41,11 @@
 				"command": "first-vs-extension.helloWorld",
 				"title": "Hello World"
 			},
-      {
+			{
 				"command": "LANEquipmentProvider.refreshEntry",
 				"title": "刷新"
 			},
-      {
+			{
 				"command": "LANEquipmentProvider.wakeEntry",
 				"title": "唤醒"
 			}
@@ -60,22 +60,22 @@
 				}
 			]
 		},
-    "menus": {
-      "view/title": [
+		"menus": {
+			"view/title": [
 				{
 					"command": "LANEquipmentProvider.refreshEntry",
 					"when": "view == LANEquipmentProvider",
 					"group": "navigation"
 				}
 			],
-      "view/item/context": [
-        {
-          "command": "LANEquipmentProvider.wakeEntry",
-          "when": "view == LANEquipmentProvider && viewItem == equipment",
-          "group": "inline"
-        }
-      ]
-    }
+			"view/item/context": [
+				{
+					"command": "LANEquipmentProvider.wakeEntry",
+					"when": "view == LANEquipmentProvider && viewItem == equipment",
+					"group": "inline"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
@@ -104,6 +104,7 @@
 	"dependencies": {
 		"@vue/reactivity": "^3.0.5",
 		"local-devices": "^3.1.0",
-		"lodash": "^4.17.20"
+		"lodash": "^4.17.20",
+		"wakeonlan": "^0.1.0"
 	}
 }

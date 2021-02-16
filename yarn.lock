@@ -1588,6 +1588,11 @@ vscode-test@^1.4.1:
     rimraf "^3.0.2"
     unzipper "^0.10.11"
 
+wakeonlan@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npm.taobao.org/wakeonlan/download/wakeonlan-0.1.0.tgz#b79e73bba84d7d28d9a35795ef020b9eecc32a25"
+  integrity sha1-t55zu6hNfSjZo1eV7wILnuzDKiU=
+
 which@2.0.2, which@^2.0.1:
   version "2.0.2"
   resolved "https://registry.npm.taobao.org/which/download/which-2.0.2.tgz#7c6a8dd0a636a0327e10b59c9286eee93f3f51b1"
