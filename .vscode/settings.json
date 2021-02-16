@@ -22,7 +22,7 @@
     // 重新设定tabsize
     "editor.tabSize": 2,
     // #每次保存的时候自动格式化
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     // #让函数(名)和后面的括号之间加个空格
     "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
     // #让prettier使用eslint的代码格式进行校验

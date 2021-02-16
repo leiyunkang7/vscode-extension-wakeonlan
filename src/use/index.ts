@@ -1,7 +1,3 @@
-import * as vscode from 'vscode';
+export * from './useContext'
 
-export let context: vscode.ExtensionContext;
-
-export function setContext(ctx: vscode.ExtensionContext) {
-  context = ctx
-}
+export * from './useLocalStorage'

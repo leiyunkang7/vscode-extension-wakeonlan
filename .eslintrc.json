@@ -13,6 +13,8 @@
     ],
     "env": {
     "browser": true,
+    "jest": true,
+    "mocha": true,
     "node": true
     },
     "rules": {
