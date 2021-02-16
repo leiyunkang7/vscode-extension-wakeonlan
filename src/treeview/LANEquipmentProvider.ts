@@ -3,15 +3,14 @@ import * as path from 'path'
 import * as find from 'local-devices'
 import * as wol from 'wakeonlan'
 
-export class LANEquipmentProvider
-  implements vscode.TreeDataProvider<Equipment> {
+export class LANEquipmentProvider implements vscode.TreeDataProvider<Equipment> {
   static refreshEntry = 'LANEquipmentProvider.refreshEntry'
 
   static wakeEntry = 'LANEquipmentProvider.wakeEntry'
 
-  constructor(private context: vscode.ExtensionContext) {
-   
-  }
+  static add = 'LANEquipmentProvider.add'
+
+  constructor(private context: vscode.ExtensionContext) {}
 
   private _onDidChangeTreeData: vscode.EventEmitter<
     Equipment | undefined | void

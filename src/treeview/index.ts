@@ -28,6 +28,12 @@ const m: ExtensionModule = (ctx) => {
     ),
 
     vscode.commands.registerCommand(
+      LANEquipmentProvider.add,
+      (equipment: Equipment) =>
+        lanFavoritesProvider.doAdd(equipment.label, equipment.description)
+    ),
+
+    vscode.commands.registerCommand(
       LANEquipmentProvider.wakeEntry,
       (equipment: Equipment) => lanEquipmentProvider.wake(equipment)
     ),

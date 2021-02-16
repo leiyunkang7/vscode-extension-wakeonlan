@@ -37,9 +37,13 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
     const { ip, mac } = await showInputBox()
 
     if (ip && mac) {
-      this.favoriteList.value.push(new Favorite(ip, mac))
+      this.doAdd(ip, mac)
     }
 
+  }
+
+  doAdd(ip: string, mac:string) {
+    this.favoriteList.value.push(new Favorite(ip, mac))
     this.refresh()
   }
 
@@ -93,7 +97,7 @@ export async function showInputBox() {
 	const ip = await vscode.window.showInputBox({
 		value: '',
 		// valueSelection: [2, 4],
-		placeHolder: '请输入ip地址或者设备名称',
+		placeHolder: '请输入设备名称',
 		validateInput: text => {
 			// vscode.window.showInformationMessage(`Validating: ${text}`)
 			return !text ? '不为空' : null;
