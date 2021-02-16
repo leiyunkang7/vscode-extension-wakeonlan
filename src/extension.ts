@@ -3,6 +3,7 @@
 import * as vscode from 'vscode'
 import viewsModules from './treeview'
 import { flatten } from 'lodash'
+import { setContext } from './use'
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -12,6 +13,8 @@ export function activate(context: vscode.ExtensionContext) {
   console.log(
     'Congratulations, your extension "first-vs-extension" is now active!'
   )
+
+  setContext(context)
 
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand

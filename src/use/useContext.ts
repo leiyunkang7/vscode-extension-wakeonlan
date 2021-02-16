@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
-import { Ref } from '@vue/reactivity'
+import { ref, Ref } from '@vue/reactivity'
 
-export let context: Ref<vscode.ExtensionContext>
+export let context: Ref<vscode.ExtensionContext> = ref() as any
 
 export function setContext(ctx: vscode.ExtensionContext) {
   context.value = ctx

@@ -1,7 +1,7 @@
 {
 	"publisher": "leiyunkang",
 	"name": "wake-on-lan",
-	"displayName": "first-vs-extension",
+	"displayName": "wake-on-lan",
 	"description": "",
 	"version": "0.0.1",
 	"engines": {
@@ -43,21 +43,34 @@
 			},
 			{
 				"command": "LANEquipmentProvider.refreshEntry",
-				"title": "刷新"
+				"title": "刷新",
+        "icon": "$(refresh)"
 			},
 			{
 				"command": "LANEquipmentProvider.wakeEntry",
 				"title": "唤醒"
+			},
+			{
+				"command": "LANFavoritesProvider.add",
+				"title": "刷新",
+        "icon": "$(plus)"
 			}
 		],
 		"views": {
 			"wakeonlan": [
+        {
+					"id": "LANFavoritesProvider",
+					"name": "自定义设备",
+					"icon": "media/lan.svg",
+					"contextualTitle": "LANFavoritesProvider"
+				},
 				{
 					"id": "LANEquipmentProvider",
-					"name": "wakeonlan",
+					"name": "局域网设备",
 					"icon": "media/lan.svg",
-					"contextualTitle": "Wake On Lan"
+					"contextualTitle": "LANEquipmentProvider"
 				}
+        
 			]
 		},
 		"menus": {
