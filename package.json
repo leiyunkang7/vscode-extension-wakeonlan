@@ -3,7 +3,7 @@
 	"name": "wake-on-lan",
 	"displayName": "wake-on-lan",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.53.0"
 	},
@@ -22,10 +22,10 @@
 	"icon": "media/lan.png",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/leiyunkang7/first-vs-extension"
+		"url": "https://github.com/leiyunkang7/vscode-extension-wakeonlan"
 	},
-	"homepage": "https://github.com/leiyunkang7/first-vs-extension",
-	"bugs": "https://github.com/leiyunkang7/first-vs-extension/issues",
+	"homepage": "https://github.com/leiyunkang7/vscode-extension-wakeonlan",
+	"bugs": "https://github.com/leiyunkang7/vscode-extension-wakeonlan/issues",
 	"contributes": {
 		"viewsContainers": {
 			"activitybar": [
