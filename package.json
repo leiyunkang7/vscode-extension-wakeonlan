@@ -38,10 +38,6 @@
 		},
 		"commands": [
 			{
-				"command": "first-vs-extension.helloWorld",
-				"title": "Hello World"
-			},
-			{
 				"command": "LANEquipmentProvider.refreshEntry",
 				"title": "刷新",
         "icon": "$(refresh)"
@@ -54,6 +50,20 @@
 				"command": "LANFavoritesProvider.add",
 				"title": "添加",
         "icon": "$(plus)"
+			},
+      {
+				"command": "LANFavoritesProvider.refresh",
+				"title": "刷新",
+        "icon": "$(refresh)"
+			},
+			{
+				"command": "LANFavoritesProvider.remove",
+				"title": "删除",
+        "icon": "$(remove)"
+			},
+      {
+				"command": "LANFavoritesProvider.wake",
+				"title": "唤醒"
 			}
 		],
 		"views": {
@@ -84,12 +94,27 @@
 					"command": "LANFavoritesProvider.add",
 					"when": "view == LANFavoritesProvider",
 					"group": "navigation"
+				},
+        {
+					"command": "LANFavoritesProvider.refresh",
+					"when": "view == LANFavoritesProvider",
+					"group": "navigation"
 				}
 			],
 			"view/item/context": [
 				{
 					"command": "LANEquipmentProvider.wakeEntry",
 					"when": "view == LANEquipmentProvider && viewItem == equipment",
+					"group": "inline"
+				},
+        {
+					"command": "LANFavoritesProvider.remove",
+					"when": "view == LANFavoritesProvider && viewItem == favorite",
+					"group": "inline"
+				},
+        {
+					"command": "LANFavoritesProvider.wake",
+					"when": "view == LANFavoritesProvider && viewItem == favorite",
 					"group": "inline"
 				}
 			]

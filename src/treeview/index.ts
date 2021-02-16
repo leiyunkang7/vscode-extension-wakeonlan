@@ -32,9 +32,22 @@ const m: ExtensionModule = (ctx) => {
       (equipment: Equipment) => lanEquipmentProvider.wake(equipment)
     ),
 
+    vscode.commands.registerCommand(LANFavoritesProvider.add, () =>
+      lanFavoritesProvider.add()
+    ),
+
     vscode.commands.registerCommand(
-      LANFavoritesProvider.add,
-      (item: Favorite) => lanFavoritesProvider.add(item)
+      LANFavoritesProvider.remove,
+      (item: Favorite) => lanFavoritesProvider.remove(item)
+    ),
+
+    vscode.commands.registerCommand(LANFavoritesProvider.refresh, () =>
+      lanFavoritesProvider.refresh()
+    ),
+
+    vscode.commands.registerCommand(
+      LANFavoritesProvider.wake,
+      (item: Favorite) => lanFavoritesProvider.wake(item)
     ),
   ]
 };

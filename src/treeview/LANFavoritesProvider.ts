@@ -6,12 +6,15 @@ import { ref, Ref } from '@vue/reactivity'
 
 export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
   constructor() {
-    
     this.favoriteList = useLocalStorage<Favorite[]>('favoriteList', [])
   }
-  onDidChangeTreeData?:
-    | vscode.Event<void | Favorite | null | undefined>
-    | undefined
+
+  private _onDidChangeTreeData: vscode.EventEmitter<
+    Favorite | undefined | void
+  > = new vscode.EventEmitter<Favorite | undefined | void>()
+
+  readonly onDidChangeTreeData: vscode.Event<Favorite | undefined | void> = this
+    ._onDidChangeTreeData.event
 
   favoriteList: Ref<Favorite[]> = ref([])
 
@@ -19,7 +22,7 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
     return element
   }
 
-  async getChildren(element?: Favorite): Promise<Favorite[]> {
+  getChildren(element?: Favorite): Favorite[] {
     if (element) {
       return []
     }
@@ -29,9 +32,33 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
 
   static add = 'LANFavoritesProvider.add'
 
-  add(item: Favorite) {
-    this.favoriteList.value.push(item)
+  async add() {
+    // this.favoriteList.value.push(item)
+    const { ip, mac } = await showInputBox()
+
+    if (ip && mac) {
+      this.favoriteList.value.push(new Favorite(ip, mac))
+    }
+
+    this.refresh()
   }
+
+  static refresh = 'LANFavoritesProvider.refresh'
+  refresh(): void {
+    this._onDidChangeTreeData.fire()
+  }
+
+  static remove = 'LANFavoritesProvider.remove'
+
+  remove(item: Favorite) {
+    const index = this.favoriteList.value.findIndex(
+      ({ description }) => item.description === description
+    )
+    this.favoriteList.value.splice(index, 1)
+    this.refresh()
+  }
+
+  static wake = 'LANFavoritesProvider.wake'
 
   wake(equipment: Favorite) {
     wol(equipment.description).then(() => {
@@ -56,4 +83,37 @@ export class Favorite extends vscode.TreeItem {
   }
 
   contextValue = 'favorite'
+}
+
+
+/**
+ * Shows an input box using window.showInputBox().
+ */
+export async function showInputBox() {
+	const ip = await vscode.window.showInputBox({
+		value: '',
+		// valueSelection: [2, 4],
+		placeHolder: '请输入ip地址或者设备名称',
+		validateInput: text => {
+			// vscode.window.showInformationMessage(`Validating: ${text}`)
+			return !text ? '不为空' : null;
+		}
+  });
+
+  let mac
+  
+  if (ip) {
+    // vscode.window.showInformationMessage(`Got: ${result}`)
+    mac = await vscode.window.showInputBox({
+      value: '',
+      // valueSelection: [2, 4],
+      placeHolder: '请输入MAC地址',
+      validateInput: (text) => {
+        // vscode.window.showInformationMessage(`Validating: ${text}`)
+        return !text ? '不为空' : null
+      },
+    })
+  }
+    
+  return {ip , mac}
 }
