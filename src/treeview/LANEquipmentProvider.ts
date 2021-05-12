@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as find from 'local-devices'
 import * as wol from 'wakeonlan'
+import I18n from '../i18n'
 
 export class LANEquipmentProvider implements vscode.TreeDataProvider<Equipment> {
   static refreshEntry = 'LANEquipmentProvider.refreshEntry'
@@ -39,7 +40,7 @@ export class LANEquipmentProvider implements vscode.TreeDataProvider<Equipment> 
 
   wake(equipment: Equipment) {
     wol(equipment.description).then(() => {
-      vscode.window.showInformationMessage(`${equipment.label} 唤醒成功`)
+      vscode.window.showInformationMessage(`${equipment.label} ${I18n.t('message.WakeSuccess')}`)
     })
   }
 }

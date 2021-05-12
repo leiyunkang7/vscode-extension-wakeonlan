@@ -1,0 +1,12 @@
+{
+  "command.refresh": "刷新",
+  "command.wake": "唤醒",
+  "command.add": "添加",
+  "command.remove": "删除",
+  "command.FavoritesProvider": "自定义设备",
+  "command.EquipmentProvider": "局域网设备",
+  "message.WakeSuccess": "唤醒成功",
+  "message.PleaseEnterDeviceName": "请输入设备名称",
+  "message.PleaseEnterMACAddress": "请输入MAC地址",
+  "message.NotNull": "不为空"
+}

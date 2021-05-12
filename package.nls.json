@@ -1,0 +1,12 @@
+{
+  "command.refresh": "Refresh",
+  "command.wake": "Wake",
+  "command.add": "Add",
+  "command.remove": "Remove",
+  "command.FavoritesProvider": "Custom Device",
+  "command.EquipmentProvider": "LAN Device",
+  "message.WakeSuccess": "Wake Success",
+  "message.PleaseEnterDeviceName": "Please enter the device name",
+  "message.PleaseEnterMACAddress": "Please enter the MAC address",
+  "message.NotNull": "Not Null"
+}

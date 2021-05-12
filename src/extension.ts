@@ -4,6 +4,7 @@ import * as vscode from 'vscode'
 import viewsModules from './treeview'
 import { flatten } from 'lodash'
 import { setContext } from './use'
+import I18n from './i18n'
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -12,6 +13,8 @@ export function activate(context: vscode.ExtensionContext) {
   // This line of code will only be executed once when your extension is activated
 
   setContext(context)
+
+  I18n.init(context.extensionPath)
 
   const modules = [viewsModules]
   const disposables = flatten(modules.map((m) => m(context)))

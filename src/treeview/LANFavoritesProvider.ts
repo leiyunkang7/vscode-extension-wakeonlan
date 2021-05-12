@@ -3,6 +3,7 @@ import * as wol from 'wakeonlan'
 import * as path from 'path'
 import { useLocalStorage } from '../use'
 import { ref, Ref } from '@vue/reactivity'
+import I18n from '../i18n'
 
 export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
   constructor() {
@@ -66,7 +67,7 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
 
   wake(equipment: Favorite) {
     wol(equipment.description).then(() => {
-      vscode.window.showInformationMessage(`${equipment.label} 唤醒成功`)
+      vscode.window.showInformationMessage(`${equipment.label} ${I18n.t('message.WakeSuccess')}`)
     })
   }
 }
@@ -97,10 +98,10 @@ export async function showInputBox() {
 	const ip = await vscode.window.showInputBox({
 		value: '',
 		// valueSelection: [2, 4],
-		placeHolder: '请输入设备名称',
+		placeHolder: I18n.t('message.PleaseEnterDeviceName'),
 		validateInput: text => {
 			// vscode.window.showInformationMessage(`Validating: ${text}`)
-			return !text ? '不为空' : null;
+			return !text ? I18n.t('message.NotNull') : null;
 		}
   });
 
@@ -111,10 +112,10 @@ export async function showInputBox() {
     mac = await vscode.window.showInputBox({
       value: '',
       // valueSelection: [2, 4],
-      placeHolder: '请输入MAC地址',
+      placeHolder: I18n.t('message.PleaseEnterMACAddress'),
       validateInput: (text) => {
         // vscode.window.showInformationMessage(`Validating: ${text}`)
-        return !text ? '不为空' : null
+        return !text ? I18n.t('message.NotNull') : null
       },
     })
   }
