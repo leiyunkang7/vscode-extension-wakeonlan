@@ -3,7 +3,7 @@
 	"name": "wake-on-lan",
 	"displayName": "wake-on-lan",
 	"description": "",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.53.0"
 	},
@@ -39,53 +39,52 @@
 		"commands": [
 			{
 				"command": "LANEquipmentProvider.refreshEntry",
-				"title": "刷新",
-        "icon": "$(refresh)"
+				"title": "%command.refresh%",
+				"icon": "$(refresh)"
 			},
 			{
 				"command": "LANEquipmentProvider.wakeEntry",
-				"title": "唤醒"
+				"title": "%command.wake%"
 			},
-      {
+			{
 				"command": "LANEquipmentProvider.add",
-				"title": "添加",
-        "icon": "$(plus)"
+				"title": "%command.add%",
+				"icon": "$(plus)"
 			},
 			{
 				"command": "LANFavoritesProvider.add",
-				"title": "添加",
-        "icon": "$(plus)"
+				"title": "%command.add%",
+				"icon": "$(plus)"
 			},
-      {
+			{
 				"command": "LANFavoritesProvider.refresh",
-				"title": "刷新",
-        "icon": "$(refresh)"
+				"title": "%command.refresh%",
+				"icon": "$(refresh)"
 			},
 			{
 				"command": "LANFavoritesProvider.remove",
-				"title": "删除",
-        "icon": "$(remove)"
+				"title": "%command.remove%",
+				"icon": "$(remove)"
 			},
-      {
+			{
 				"command": "LANFavoritesProvider.wake",
-				"title": "唤醒"
+				"title": "%command.wake%"
 			}
 		],
 		"views": {
 			"wakeonlan": [
-        {
+				{
 					"id": "LANFavoritesProvider",
-					"name": "自定义设备",
+					"name": "%command.FavoritesProvider%",
 					"icon": "media/lan.svg",
 					"contextualTitle": "LANFavoritesProvider"
 				},
 				{
 					"id": "LANEquipmentProvider",
-					"name": "局域网设备",
+					"name": "%command.EquipmentProvider%",
 					"icon": "media/lan.svg",
 					"contextualTitle": "LANEquipmentProvider"
 				}
-        
 			]
 		},
 		"menus": {
@@ -95,19 +94,19 @@
 					"when": "view == LANEquipmentProvider",
 					"group": "navigation"
 				},
-        {
+				{
 					"command": "LANFavoritesProvider.add",
 					"when": "view == LANFavoritesProvider",
 					"group": "navigation"
 				},
-        {
+				{
 					"command": "LANFavoritesProvider.refresh",
 					"when": "view == LANFavoritesProvider",
 					"group": "navigation"
 				}
 			],
 			"view/item/context": [
-        {
+				{
 					"command": "LANEquipmentProvider.add",
 					"when": "view == LANEquipmentProvider && viewItem == equipment",
 					"group": "inline@1"
@@ -117,12 +116,12 @@
 					"when": "view == LANEquipmentProvider && viewItem == equipment",
 					"group": "inline@2"
 				},
-        {
+				{
 					"command": "LANFavoritesProvider.remove",
 					"when": "view == LANFavoritesProvider && viewItem == favorite",
 					"group": "inline@1"
 				},
-        {
+				{
 					"command": "LANFavoritesProvider.wake",
 					"when": "view == LANFavoritesProvider && viewItem == favorite",
 					"group": "inline@2"
