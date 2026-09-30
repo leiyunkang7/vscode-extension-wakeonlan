@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: compile / lint / format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      # 锁文件纪律：package.json 与 bun.lock 不一致时直接失败
+      - run: bun install --frozen-lockfile
+      # compile 在 lint 之前：类型感知 linting 需要能建立 TS program，
+      # 也让“编译失败”与“lint 失败”保持两套可独立归因的信号
+      - run: bun run compile
+      - run: bun run lint
+      - run: bun run format:check
+      # 集成测试需要下载 Electron，不在 CI 中运行，本地用 `bun run test`

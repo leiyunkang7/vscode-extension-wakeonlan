@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as wol from 'wakeonlan'
+import wol from 'wakeonlan'
 import * as path from 'path'
 import { useLocalStorage } from '../use'
 import { ref, Ref } from '@vue/reactivity'
@@ -14,8 +14,8 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
     Favorite | undefined | void
   > = new vscode.EventEmitter<Favorite | undefined | void>()
 
-  readonly onDidChangeTreeData: vscode.Event<Favorite | undefined | void> = this
-    ._onDidChangeTreeData.event
+  readonly onDidChangeTreeData: vscode.Event<Favorite | undefined | void> =
+    this._onDidChangeTreeData.event
 
   favoriteList: Ref<Favorite[]> = ref([])
 
@@ -40,10 +40,9 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
     if (ip && mac) {
       this.doAdd(ip, mac)
     }
-
   }
 
-  doAdd(ip: string, mac:string) {
+  doAdd(ip: string, mac: string) {
     this.favoriteList.value.push(new Favorite(ip, mac))
     this.refresh()
   }
@@ -57,7 +56,7 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
 
   remove(item: Favorite) {
     const index = this.favoriteList.value.findIndex(
-      ({ description }) => item.description === description
+      ({ description }) => item.description === description,
     )
     this.favoriteList.value.splice(index, 1)
     this.refresh()
@@ -66,9 +65,17 @@ export class LANFavoritesProvider implements vscode.TreeDataProvider<Favorite> {
   static wake = 'LANFavoritesProvider.wake'
 
   wake(equipment: Favorite) {
-    wol(equipment.description).then(() => {
-      vscode.window.showInformationMessage(`${equipment.label} ${I18n.t('message.WakeSuccess')}`)
-    })
+    wol(equipment.description)
+      .then(() => {
+        vscode.window.showInformationMessage(
+          `${equipment.label} ${I18n.t('message.WakeSuccess')}`,
+        )
+      })
+      .catch(() => {
+        vscode.window.showErrorMessage(
+          `${equipment.label} ${I18n.t('message.WakeFailed')}`,
+        )
+      })
   }
 }
 
@@ -76,37 +83,40 @@ export class Favorite extends vscode.TreeItem {
   constructor(
     public readonly label: string,
     public readonly description: string,
-    public readonly collapsibleState: vscode.TreeItemCollapsibleState = 0
+    public readonly collapsibleState: vscode.TreeItemCollapsibleState = 0,
   ) {
     super(label, collapsibleState)
     this.tooltip = `${this.label} ${this.description}`
   }
 
   iconPath = {
-    light: path.join(__filename, '..', '..', 'resources', 'light', 'add.svg'),
-    dark: path.join(__filename, '..', '..', 'resources', 'dark', 'add.svg'),
+    light: vscode.Uri.file(
+      path.join(__filename, '..', '..', 'resources', 'light', 'add.svg'),
+    ),
+    dark: vscode.Uri.file(
+      path.join(__filename, '..', '..', 'resources', 'dark', 'add.svg'),
+    ),
   }
 
   contextValue = 'favorite'
 }
 
-
 /**
  * Shows an input box using window.showInputBox().
  */
 export async function showInputBox() {
-	const ip = await vscode.window.showInputBox({
-		value: '',
-		// valueSelection: [2, 4],
-		placeHolder: I18n.t('message.PleaseEnterDeviceName'),
-		validateInput: text => {
-			// vscode.window.showInformationMessage(`Validating: ${text}`)
-			return !text ? I18n.t('message.NotNull') : null;
-		}
-  });
+  const ip = await vscode.window.showInputBox({
+    value: '',
+    // valueSelection: [2, 4],
+    placeHolder: I18n.t('message.PleaseEnterDeviceName'),
+    validateInput: (text) => {
+      // vscode.window.showInformationMessage(`Validating: ${text}`)
+      return !text ? I18n.t('message.NotNull') : null
+    },
+  })
 
   let mac
-  
+
   if (ip) {
     // vscode.window.showInformationMessage(`Got: ${result}`)
     mac = await vscode.window.showInputBox({
@@ -119,6 +129,6 @@ export async function showInputBox() {
       },
     })
   }
-    
-  return {ip , mac}
+
+  return { ip, mac }
 }

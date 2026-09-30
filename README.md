@@ -11,6 +11,7 @@
 > The WOL and WoWLAN standards are often supplemented by vendors to provide protocol-transparent on-demand services, for example in the Apple Bonjour wake-on-demand (Sleep Proxy) feature.
 
 [百度百科](https://baike.baidu.com/item/Wake-on-LAN)
+
 > Wake-On-LAN简称WOL，是一种电源管理功能；如果存在网络活动，则允许设备将操作系统从待机或休眠模式中唤醒。许多主板厂商支持IBM提出的网络唤醒标准。该标准允许网络管理员远程打开PC机电源，以便进行文件升级、资源跟踪和设备清点等工作。
 
 ## 参考来源:
@@ -20,6 +21,7 @@
 交互式表单: https://github.com/microsoft/vscode-extension-samples/tree/master/quickinput-sample  
 按钮排序: https://www.cnblogs.com/liuxianan/p/vscode-plugin-command-and-menu.html#%E7%BB%84%E9%97%B4%E6%8E%92%E5%BA%8F  
 组件发布: http://blog.haoji.me/vscode-plugin-publish.html  
-国际化:   
- - https://github.com/lokalise/i18n-ally/blob/master/src/i18n.ts  
- - https://github.com/shanalikhan/code-settings-sync
+国际化:
+
+- https://github.com/lokalise/i18n-ally/blob/master/src/i18n.ts
+- https://github.com/shanalikhan/code-settings-sync

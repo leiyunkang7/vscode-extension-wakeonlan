@@ -9,6 +9,6 @@ export function setContext(ctx: vscode.ExtensionContext) {
 
 export function useContext() {
   return {
-    context
+    context,
   }
 }

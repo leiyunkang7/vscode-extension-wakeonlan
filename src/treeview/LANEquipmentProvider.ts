@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as find from 'local-devices'
-import * as wol from 'wakeonlan'
+import find from 'local-devices'
+import wol from 'wakeonlan'
 import I18n from '../i18n'
 
 export class LANEquipmentProvider implements vscode.TreeDataProvider<Equipment> {
@@ -16,9 +16,8 @@ export class LANEquipmentProvider implements vscode.TreeDataProvider<Equipment> 
   private _onDidChangeTreeData: vscode.EventEmitter<
     Equipment | undefined | void
   > = new vscode.EventEmitter<Equipment | undefined | void>()
-  readonly onDidChangeTreeData: vscode.Event<
-    Equipment | undefined | void
-  > = this._onDidChangeTreeData.event
+  readonly onDidChangeTreeData: vscode.Event<Equipment | undefined | void> =
+    this._onDidChangeTreeData.event
 
   refresh(): void {
     this._onDidChangeTreeData.fire()
@@ -39,9 +38,17 @@ export class LANEquipmentProvider implements vscode.TreeDataProvider<Equipment> 
   }
 
   wake(equipment: Equipment) {
-    wol(equipment.description).then(() => {
-      vscode.window.showInformationMessage(`${equipment.label} ${I18n.t('message.WakeSuccess')}`)
-    })
+    wol(equipment.description)
+      .then(() => {
+        vscode.window.showInformationMessage(
+          `${equipment.label} ${I18n.t('message.WakeSuccess')}`,
+        )
+      })
+      .catch(() => {
+        vscode.window.showErrorMessage(
+          `${equipment.label} ${I18n.t('message.WakeFailed')}`,
+        )
+      })
   }
 }
 
@@ -49,15 +56,19 @@ export class Equipment extends vscode.TreeItem {
   constructor(
     public readonly label: string,
     public readonly description: string,
-    public readonly collapsibleState: vscode.TreeItemCollapsibleState = 0
+    public readonly collapsibleState: vscode.TreeItemCollapsibleState = 0,
   ) {
     super(label, collapsibleState)
     this.tooltip = `${this.label} ${this.description}`
   }
 
   iconPath = {
-    light: path.join(__filename, '..', '..', 'resources', 'light', 'add.svg'),
-    dark: path.join(__filename, '..', '..', 'resources', 'dark', 'add.svg'),
+    light: vscode.Uri.file(
+      path.join(__filename, '..', '..', 'resources', 'light', 'add.svg'),
+    ),
+    dark: vscode.Uri.file(
+      path.join(__filename, '..', '..', 'resources', 'dark', 'add.svg'),
+    ),
   }
 
   contextValue = 'equipment'

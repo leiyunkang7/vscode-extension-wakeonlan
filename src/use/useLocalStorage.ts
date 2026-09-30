@@ -1,5 +1,5 @@
-import { ref, effect } from "@vue/reactivity";
-import { useContext } from "./useContext";
+import { ref, effect } from '@vue/reactivity'
+import { useContext } from './useContext'
 
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>
 
@@ -35,10 +35,9 @@ const SERIALIZERS = {
  * @param storage
  * @param options
  */
-export function useLocalStorage<T extends string | number | boolean | object | null>(
-  key: string,
-  defaultValue: T
-) {
+export function useLocalStorage<
+  T extends string | number | boolean | object | null,
+>(key: string, defaultValue: T) {
   const { context } = useContext()
 
   const storage: StorageLike = {
@@ -59,16 +58,16 @@ export function useLocalStorage<T extends string | number | boolean | object | n
     defaultValue === null
       ? 'any'
       : typeof defaultValue === 'boolean'
-      ? 'boolean'
-      : typeof defaultValue === 'string'
-      ? 'string'
-      : typeof defaultValue === 'object'
-      ? 'object'
-      : Array.isArray(defaultValue)
-      ? 'object'
-      : !Number.isNaN(defaultValue)
-      ? 'number'
-      : 'any'
+        ? 'boolean'
+        : typeof defaultValue === 'string'
+          ? 'string'
+          : typeof defaultValue === 'object'
+            ? 'object'
+            : Array.isArray(defaultValue)
+              ? 'object'
+              : !Number.isNaN(defaultValue)
+                ? 'number'
+                : 'any'
 
   function read() {
     try {
@@ -105,7 +104,7 @@ export function useLocalStorage<T extends string | number | boolean | object | n
     },
     {
       allowRecurse: true,
-    }
+    },
   )
 
   return data

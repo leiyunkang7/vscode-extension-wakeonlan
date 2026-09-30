@@ -2,7 +2,6 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode'
 import viewsModules from './treeview'
-import { flatten } from 'lodash'
 import { setContext } from './use'
 import I18n from './i18n'
 
@@ -17,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
   I18n.init(context.extensionPath)
 
   const modules = [viewsModules]
-  const disposables = flatten(modules.map((m) => m(context)))
+  const disposables = modules.flatMap((m) => m(context))
   context.subscriptions.push(...disposables)
 }
 
