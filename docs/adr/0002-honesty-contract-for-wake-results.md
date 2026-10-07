@@ -28,3 +28,5 @@ status: accepted
 - **`I18n` 必须先修。** `format` 只匹配 `/{(\d+)}/`，撑不起具名占位符；`t` 对未知 key 返回 `''`，会渲染出一条只剩设备名的空通知，而空通知在视觉上与成功提示无从区分。未知 key 的回退值定为 **key 本身**——这条改动成本几乎为零，却让禁止规则在实现期可审计。
 - **`[查看日志]` 按钮的落点未定。** 它指向[这个扩展需不需要一个诊断面](https://github.com/leiyunkang7/vscode-extension-wakeonlan/issues/10)。若该票判定不需要诊断面，则按钮撤除、`failed` 的短理由直接作为 toast 主文案、raw code 不上屏。日志本身**每次唤醒都写**（而非只在出错时），因为 `timed-out` 的文案是"无法确认是否已发出"——此时点进空日志等于在最需要帮助的时刻被抛弃。
 - **`workbench.notifications.toast` 与 `workbench.notifications.doNotDisturbMode` 不存在。** 后者在 application storage 而非 `settings.json`；`workbench.notifications.*` 下真实存在的只有 `position` 与 `showInTitleBar`，均不影响时长。写规格时勿引用。
+- **本契约只约束关于目标的断言。** GLOSSARY 边界写着「唤醒结果里的每一句断言都是相对于发包位置的」，因此**发包位置不对不落入本契约的禁止规则**：那种情况下扩展说的仍是真话，只是发在了听不见的地方。它是可用性失效，不是否定性证据缺失；不为它建拒绝机制的理由记在[0005](0005-sending-position-disclosure-not-refusal.md)。
+- **`sent` 的证据是「内核接受了报文」，不是「报文离开了网卡」。** `dgram` 的 `send` 回调在报文交给内核后即 resolve，它不证明帧已上线。这个精度在本地场景不显眼，在发包位置听不见目标时更显眼——那里的 `sent` 离「目标收到了」远得多。
